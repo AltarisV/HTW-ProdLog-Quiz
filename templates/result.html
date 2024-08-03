@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Your Score: {{ correct_answers }}/10</h1>
+    <h2>Results:</h2>
+    <ul>
+        {% for result in results %}
+        <li>
+            <strong>{{ result['question'] }}</strong><br>
+            Your Answer: <span style="color: {% if result['correct'] %}green{% else %}red{% endif %};">{{ result['user_answer'] }}</span><br>
+            Correct Answer: <strong>{{ result['correct_answer'] }}</strong>
+        </li>
+        <br>
+        {% endfor %}
+    </ul>
+    <form action="{{ url_for('retry') }}">
+        <input type="submit" value="Try Again" class="submit-button">
+    </form>
+</div>
+</body>
+</html>

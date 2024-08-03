@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<div class="container">
+  <h1>Quiz</h1>
+  <form method="post" action="{{ url_for('result') }}">
+    {% for question in questions %}
+    <div class="question-block">
+      <p><strong>Question {{ loop.index }}: </strong>{{ question['Frage'] }}</p>
+      <div class="options">
+        <label><input type="radio" name="question{{ loop.index }}" value="{{ question['Option A'] }}"> {{ question['Option A'] }}</label><br>
+        <label><input type="radio" name="question{{ loop.index }}" value="{{ question['Option B'] }}"> {{ question['Option B'] }}</label><br>
+        <label><input type="radio" name="question{{ loop.index }}" value="{{ question['Option C'] }}"> {{ question['Option C'] }}</label><br>
+        <label><input type="radio" name="question{{ loop.index }}" value="{{ question['Option D'] }}"> {{ question['Option D'] }}</label><br>
+      </div>
+      <input type="hidden" name="correct_answer{{ loop.index }}" value="{{ question['Richtige Antwort'] }}">
+      <input type="hidden" name="question_text{{ loop.index }}" value="{{ question['Frage'] }}">
+    </div>
+    <br>
+    {% endfor %}
+    <input type="submit" value="Submit" class="submit-button">
+  </form>
+</div>
+</body>
+</html>
