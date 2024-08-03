@@ -11,17 +11,17 @@
   <h1>Quiz</h1>
   <form method="post" action="{{ url_for('result') }}">
     {% for question in questions %}
-    <div class="question-block">
-      <p><strong>Question {{ loop.index }}: </strong>{{ question['Frage'] }}</p>
+    <fieldset class="question-block">
+      <legend><strong>Question {{ loop.index }}: </strong>{{ question['Frage'] }}</legend>
       <div class="options">
-        <label><input type="radio" name="question{{ loop.index }}" value="{{ question['Option A'] }}"> {{ question['Option A'] }}</label><br>
-        <label><input type="radio" name="question{{ loop.index }}" value="{{ question['Option B'] }}"> {{ question['Option B'] }}</label><br>
-        <label><input type="radio" name="question{{ loop.index }}" value="{{ question['Option C'] }}"> {{ question['Option C'] }}</label><br>
-        <label><input type="radio" name="question{{ loop.index }}" value="{{ question['Option D'] }}"> {{ question['Option D'] }}</label><br>
+        <label for="q{{ loop.index }}a"><input type="radio" id="q{{ loop.index }}a" name="question{{ loop.index }}" value="{{ question['Option A'] }}"> {{ question['Option A'] }}</label><br>
+        <label for="q{{ loop.index }}b"><input type="radio" id="q{{ loop.index }}b" name="question{{ loop.index }}" value="{{ question['Option B'] }}"> {{ question['Option B'] }}</label><br>
+        <label for="q{{ loop.index }}c"><input type="radio" id="q{{ loop.index }}c" name="question{{ loop.index }}" value="{{ question['Option C'] }}"> {{ question['Option C'] }}</label><br>
+        <label for="q{{ loop.index }}d"><input type="radio" id="q{{ loop.index }}d" name="question{{ loop.index }}" value="{{ question['Option D'] }}"> {{ question['Option D'] }}</label><br>
       </div>
       <input type="hidden" name="correct_answer{{ loop.index }}" value="{{ question['Richtige Antwort'] }}">
       <input type="hidden" name="question_text{{ loop.index }}" value="{{ question['Frage'] }}">
-    </div>
+    </fieldset>
     <br>
     {% endfor %}
     <input type="submit" value="Submit" class="submit-button">

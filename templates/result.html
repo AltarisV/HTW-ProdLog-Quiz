@@ -7,21 +7,26 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-<div class="container">
+<div class="container" role="main">
     <h1>Your Score: {{ correct_answers }}/10</h1>
     <h2>Results:</h2>
     <ul>
         {% for result in results %}
         <li>
             <strong>{{ result['question'] }}</strong><br>
-            Your Answer: <span style="color: {% if result['correct'] %}green{% else %}red{% endif %};">{{ result['user_answer'] }}</span><br>
+            Your Answer:
+            <span
+                    style="color: {% if result['correct'] %}green{% else %}red{% endif %};"
+                    aria-label="{% if result['correct'] %}Correct{% else %}Incorrect{% endif %}">
+                {{ result['user_answer'] }}
+            </span><br>
             Correct Answer: <strong>{{ result['correct_answer'] }}</strong>
         </li>
         <br>
         {% endfor %}
     </ul>
     <form action="{{ url_for('retry') }}">
-        <input type="submit" value="Try Again" class="submit-button">
+        <input type="submit" value="Retake Quiz" class="submit-button">
     </form>
 </div>
 </body>

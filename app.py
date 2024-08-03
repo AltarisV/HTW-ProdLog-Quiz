@@ -4,7 +4,7 @@ import pandas as pd
 app = Flask(__name__)
 
 # Load the CSV file into a DataFrame
-questions_df = pd.read_csv('quiz_fragen_mc_final_extended.csv')
+questions_df = pd.read_csv('quizfragen.csv')
 
 
 @app.route('/')
